@@ -18,24 +18,15 @@
 <!-- Body -->
 <body>
 <!-- Header Section -->
-<header>
-    <div id="logo" class="flex-item logo">
-        <a href="/" title="Return to Market">
-            <h1><i class="bi bi-cup"></i>tech blog</h1>
-        </a>
-    </div>
-    <!-- Primary navigation -->
-    <div id="sign-in-panel">
-    <!-- User Profile displays when a session is active -->
+<header>       
+     <a href="/" id="title"><h1>Tech blog </h1></a>
+ <!-- User Profile displays when a session is active -->
     {{#if logged_in}}
         <!-- Profile / Sign Out displays when a session is active -->
-        <button class="navbtn" id="get-post-form" title="Make An Offer"><i class="bi bi-cart-plus"></i></button>
-        <a href="/messages"><button class="navbtn" title="Check Messages"><i class="bi bi-mailbox"></i></button></a>
-        <div class="dropdown">
-            <button class="navbtn" id="pantry" title="View Pantry"><i class="bi bi-person-circle"></i></button>
-            <div class="dropdown-content">
-                <a href="/pantry"><i class="bi bi-basket"></i> My Pantry</a>
-                <a href="" id="logout"><i class="bi bi-x-circle"></i> Sign Out</a>
+        <div class="pilot"> 
+             <button id="sign-out" class="btn nav btn-primary btn-lg">Sign-out</button>
+             <a href="../post.handlebars" class="btn btn-secondary nav btn-lg">Post</a>
+             <a href="../pro"
             </div>
         </div>
     <!-- Sign In / Register displays when a session is not active -->
@@ -74,4 +65,3 @@
 <!-- End Scripts-->
 </body>
 </html>
-<!-- That's All Folks! -->
