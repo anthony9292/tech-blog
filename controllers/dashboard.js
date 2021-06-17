@@ -33,14 +33,14 @@ router.get('/create', (req, res) => {
     }).then((postData) => { 
         const post = postData.map((post) => post.get ({ plain: true })); 
 
-        res.render('new-post', {posts, loggedIn: true}); 
+        res.render('postnew', {posts, loggedIn: true}); 
 }).catch((err) => {res.status(500).json(err)})
 });
 
 
 
 ///editing post section 
-router.get('/edit-post/:id', (req, res ) => {
+router.get('postedit/:id', (req, res ) => {
 Post.findByPk(req.params.id, {})
 .then((postData) => { 
     if(!postData) { 
@@ -49,7 +49,7 @@ Post.findByPk(req.params.id, {})
     }
     const post = postData.get({ plain: true}); 
 
-    res.render('edit-post', {post, loggedIn: true}); 
+    res.render('postedit', {post, loggedIn: true}); 
 
 }).catch ((err) => { res.status(500).json(err)})
 }); 
