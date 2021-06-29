@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+header<!DOCTYPE html>
 <html lang="en">
 <!-- Head -->
 <head>
@@ -13,52 +13,29 @@
 <link rel="stylesheet" href="css/style.css">
 <!-- End Style Sheets -->
 <!-- Title -->
-<title>tech blog</title>
+<title>Anthony's tech blog</title>
 </head>
 <!-- Body -->
 <body>
 <!-- Header Section -->
-<header>       
-     <a href="/" id="title"><h1>Tech blog </h1></a>
- <!-- User Profile displays when a session is active -->
+<header>
+        <a href="/" id="title">Tech blog</a>">
+    <!-- User Profile displays when a session is active -->
     {{#if logged_in}}
-        <!-- Profile / Sign Out displays when a session is active -->
-        <div class="pilot"> 
-             <button id="sign-out" class="btn nav btn-primary btn-lg">Sign-out</button>
-             <a href="../post.handlebars" class="btn btn-secondary nav btn-lg">Post</a>
-             <a href="../pro"
-            </div>
-        </div>
-    <!-- Sign In / Register displays when a session is not active -->
-    {{else}}  
-        <div class="flex-item">
-            <button class="btn btn-primary btn-lg" id="login-start">Log In</button>
-        </div>
-        <div class="flex-item">
-            <button class="btn btn-primary btn-lg" id="register-start">Register</button>
-        </div>
-    {{/if}}
+    <div class="navi-bar">
+        <button id="logout" class="btn nav btn-light">logout</button>
+        <a href ="/post" class="btn nav btn-success">Post</a>
+        <a href = "/profile" class="btn nav btn-warning">access your Post</a>
     </div>
-</header>
-<!-- Main -->
-<main>
-    <!-- Handlebars is rendered here -->    
-    {{{body}}}
-</main>
-<!-- Footer -->
-<footer>
-    <!-- Copyright Info -->
-    <p>Copyright &copy; tech blog.</p>
-</footer>
-<!-- Start Scripts-->
-{{#if logged_in}}
-<script src="./js/product.js"></script>
-<script src="./js/logout.js"></script>
-<script src="./js/navigation.js"></script>
-{{else}}
-<script src="./js/register.js"></script>
-<script src="./js/login-form.js"></script>
-{{/if}}
+     {{else}}
+         <!-- Sign In / Register displays when a session is not active -->
+      <div class="nav-bar">
+          <a href="/login" class="btn nav btn-light">login</a>
+          <a href="/register" class="btn nav btn-info">Register New Account</a>
+          </div>
+          {{/if}}
+          </header>
+        
 <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 <scrip src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></scrip>
 <scrip src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></scrip>
