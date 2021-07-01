@@ -1,27 +1,21 @@
 const router = require('express').Router(); 
-const { Model } = require('sequelize/types');
-const { endsWith } = require('sequelize/types/lib/operators');
 const { User } =  require('../../models'); 
 
-router.post('/', (req, res) => { 
-    User.create(req.body)
-    .then((user) => { 
-        req.session.save(() => { 
-            req.session.user_id = user.id;
-            req.session.username = user.username;
-            req.session.logged_in = true; 
-        
-       
-
+router.post('/register', async (req, res) => { 
+   try { 
+       const registerData = await User.create(req.body);
+            req.session.user_id = registerData.id;
+            req.session.logged_in = true;
+              res.status(200).json(registerData);
+        } catch (err) { 
+            res.status(400).json(err); 
+        }
         })
-    })
-    .catch ((err) => res.status(500).json(err))
-}); 
 
 ///log in user 
-router.post('/login',  (req, res) => { 
-    User.findOne({ where: {username: req.body.username}  })
-    .then((user) =>  { 
+router.post('/login', async (req, res) => { 
+    try {  
+        const userData = await User.findOne ({ where: {email: req.body.email} })
         if(!user) {  or
             res.status(400).json({ message:'The account name you entered is invalid,Please check your information and try again.'})
             return; 

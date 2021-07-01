@@ -1,52 +1,68 @@
 const router = require('express').Router(); 
 const { Post, User, Comment } = require('../../models');
 const sequelize = require("../../config/connection"); 
-const { route } = require('.');
+const withAuth = require('../../utils/helpers');
+
 
 ///creates new post 
-router.post('/', (req, res) => { 
-    Post.create({ 
+router.post('/', async, (req, res) => { 
+    try { 
+        if(req.session.logged_in) {
+        const postData =  await Post.create({ 
         title: req.body.title,  
         body: req.body.body, 
         user_id: req.session.user_id, 
     })
-    .then((newPost) => res.json)(newPost)
-    .catch((err) => { res.status(500).json(err)})
-}); 
+     res.status(200).json(postData); 
+} 
+else { 
+    res.redirect('/login'); 
+}
 
+} catch (err) { 
+    res.status(400).json(err);
+}
+});
 
-//updates new posts from user 
-router.put('/:id',  req, res => { 
-    Post.update(req.body, { 
-        where: { 
-            id: req.params.id,
+router.delete('/', async (req, res) => {
+    try {
+
+        if( req.session.logged_in) { 
+            const postData = await Post.destroy({
+                where:  { 
+                    id: req.params.id
+                }
+            })
+           res.status(200).json(postData);
+        } else { 
+            res.redirect('login'); 
         }
-    })
-    then.((posts) => { 
+    } catch (err) {
+        res.status(400).json(err);
+    }
+});
 
-        if(!req.params.id) { 
-            res.status(404).json({ message: "Post matching that id not found!!"}); 
-            return; 
+router.put('/id', async (req,res) => { 
+    try { 
+        if(req.session.logged_in) { 
+            const postData = await Post.update({
+                title: req.body.title,
+                text: req.body.text
+            }, 
+            { 
+                where: { 
+                    id: req.params.id
+                },
+            })
+            res.status(200).json(postData); 
+        } else { 
+            res.redirect('login');
         }
-        res.json(posts)
-    }) 
-    .catch ((err) => res.status(400).json(err))
-}); 
 
-router.delete('/:id', (req, res) => {
-    Post.destroy({ 
-        where: { 
-            id: req.params.id, 
-        }, 
-    })
-    .then((posts) => { 
-        if(!req.params.id) { 
-            res.status(404).json({messge:"Post matching that id not found!!"}); 
-            return;
-        }
-        res.json(posts)
-    })
-    .catch ((err) => res.status(500).json(err))
-}); 
+    }catch (err) {
+        res.status(400).json(err);
+    }
+})
+
 
 module.exports = router;

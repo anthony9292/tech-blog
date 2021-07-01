@@ -1,10 +1,12 @@
 const router = require('express').Router();
+const { eq } = require('sequelize/types/lib/operators');
 const { User, Post, Comment} = require('../models');
+const { afterSync } = require('../models/User');
 
 
 router.get('/', async (req, res) => {
     try {
-          if ( req.session.logged_in) 
+          if ( req.session.logged_in)  {
            const postData = await Post.findAll({
                include: { 
                    model: User,
@@ -26,90 +28,122 @@ router.get('/', async (req, res) => {
             const post = postData.map((post) => post.get ({ plain: true}))
             res.render('homepage', {posts}); 
 
-        } catch (err) { 
+        } 
+    }catch (err) { 
             res.status.apply(500).json(err); 
         }
 
     });
-       router.get('/login', (req, res) => {
+
+//login 
+router.get('/login', (req, res) => {
     try {
-        if (req.session.logged_in) {
-            res.redirect('/');
-            return;
+        if (!req.session.logged_in) {
+            res.render('login');
+          } else if (req.session.logged_in) { 
+              res.render('homepage', {logged_in:req.session.logged_in})
           }
-        
-          res.render('login');
-    } catch (err) {
+    } 
+    catch (err) {
         res.status(500).json(err);
     }
 });
 
-router.get('/messages', async (req, res) => {
-    try {
-        const messageData = await Messages.findAll({
-            where: {user_id: req.session.user_id}, 
-            order:[['updatedAt',  'DESC']]
-        });
-
-        const userData = await User.findOne({ where: {id: req.session.user_id } });
-        console.log("userData", userData.name);
-
-        const messages = messageData.map((messages) => messages.get({ plain: true }));
-        messages.map(item => {
-            try {
-                item.messages = cryptr.decrypt(item.messages);   
-                item.username = userData.name;                
-                return item;
-            } catch(ex) {
-                console.error(ex);
-            }
-        });
-        
-        res.render('messages', { messages, logged_in: req.session.logged_in });
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
-
-router.get('/pantry', async (req, res) => {
-
-    try {
-        const pantryData = await Product.findAll({
-            where: {user_id: req.session.user_id},
-            order:[['updatedAt',  'DESC']]
-        });
-        
-        const pantry = pantryData.map((pantry) => pantry.get({ plain: true }));
-        console.log(pantry)
-        res.render('pantry', { pantry, logged_in: req.session.logged_in });
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
-
+//register 
 router.get('/register', async (req, res) => {
     try{
         res.render('register')
-    } catch (err) {
-        res.status(500).json(err);
-    }
-})
-
-
-router.get('/create', async (req, res) => {
-    try{
-        res.render('create', {logged_in: req.session.logged_in})
-    } catch (err) {
+    } 
+    catch (err) {
         res.status(500).json(err);
     }
 });
 
-
-router.get('/messageform', async (req, res) => {
+router.get('/post', async (req, res) => {
     try{
-        res.render('messageform', {logged_in: req.session.logged_in})
-    } catch (err) {
+        if(req.session.logged_in) {
+            res.render('post',  { logged_in: req.session.logged_in })
+       
+    } else { 
+        res.render('login'); 
+    } 
+}
+catch (err) { 
+    res.status(500).json(err);
+}
+
+}); 
+
+router.get('/post/:id', async (req, res) => {
+    try {
+        if (req.session.logged_in)  {
+        const postData = await Post.findOne({ 
+           where: { 
+               id: req.params.id
+            },
+            include: { 
+                model: Comment, 
+                oder:[['updateAt', 'DESC']], 
+                include:
+                { 
+                    model: User,
+                    as: 'user',
+                },
+                
+            },
+    }) 
+    const posts = postData.get({ plain: true });  
+    res.render('comment', {posts, logged_in: req.session.logged_in})
+} else {
+    res.render('login');
+}
+    } catch (err) { 
+        res.status(500).json(err);
+    }
+
+}); 
+
+router.get('/profile', async (req, res) => { 
+    try { 
+        if(req.session.logged_in) { 
+            const postData = await Post.findAll({ 
+                where: { 
+                    user_id: req.session.user_id
+                },
+                include: { 
+                    model: Comment, 
+                    order:  [['updatedAt', 'DESC']],
+                    include: { 
+                        model: User,
+                            as: 'user'
+                    }
+                },
+            })
+            const posts = postData.map((post) => post.get({ plain: true })); 
+            res.render('profile', { posts, logged_in: req.session.logged_in}); 
+        } else { 
+          res.render('login'); 
+        }
+    } 
+    catch (err) { 
+        res.status(500).json(err)
+    }
+});
+
+router.get('update/:id', async (req, res) => { 
+    try{ 
+        if(req.session.logged_in) { 
+            const postData = await Post.findByPk(req.params.id)
+            const posts = postData.get({ plain: true }); 
+            res.render('update', { posts, logged_in: req.sessions.logged_in})
+        } 
+        else {
+            res.render('login'); 
+        }
+    } 
+    catch(err) { 
         res.status(500).json(err);
     }
 })
+
 module.exports = router;
