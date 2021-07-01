@@ -1,17 +1,24 @@
 const router = require('express').Router(); 
-const { default: ModelManager } = require('sequelize/types/lib/model-manager');
-const { Comment, User } = require('../../models'); 
-const withAuth = require("../../utils.auth"); 
+const { Comment } = require('../../models'); 
 
-router.post('/', async (req, res) => {  
-    console.log(req.body.post_id); 
-    Comment.create({ 
-        ...req.body,
-        user_id: req.session.user_id,
-    })
-    .then((newComment) => res.json(newComment))
-    .catch ((err) => res.status(400).json(err))
+router.post('/', async (req, res) => { 
+    
+    try { 
+        if ( req.session.logged) { 
+             console.log(req.session.user_id)
+             const postData = await Comment.create({
+                 comment_text: req.body.comment,
+                 post_id: req.body.postId, 
+                 user_id: req.session.user_id
+             })
+             res.status(200).json(postData);
+        } else { 
+            res.render('login'); 
+        } 
+    } catch (err) { 
+        res.status(400).json(err); 
+    }
 }); 
-
+ 
 module.exports = router; 
    
