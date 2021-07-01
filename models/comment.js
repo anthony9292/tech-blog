@@ -22,7 +22,7 @@ Comment.init({
         type: Datatypes.INTEGER, 
         references: { 
             model: 'post', 
-            key: 'id', 
+            id: 'id', 
         }
     },
 
@@ -30,8 +30,12 @@ Comment.init({
         type: Datatypes.INTEGER, 
         references: { 
             model: 'user', 
-            key: 'id', 
+            id: 'id', 
         }
+    },
+
+    user_id: { 
+        type: Data
     }
 }, 
 
