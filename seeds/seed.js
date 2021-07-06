@@ -7,6 +7,7 @@ const commentData = require('./commentData.json');
 
 const seedDatabase = async () => { 
     await sequalize.sync({ force: true }); 
+    console.log('\n----- DATABASE SYNCED -----\n'); 
 
     await User.bulkCreate(userData);
      console.log('\n----- User SEEDED ------\n');
