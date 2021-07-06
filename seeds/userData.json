@@ -12,6 +12,18 @@
  {   "name": "IshiI Fakuda",
      "email":"inuyasha05@gmail.com",
      "password":" AdultSwin03"
- }
+ },
+ {   "name": "Rick roll",
+    "email":"Rick_roll@gmail.com",
+    "password":"UgotRolled"
+},
+{   "name": "Micheal jordan",
+    "email":"NotbballJordan@gmail.com",
+    "password":"IPlayLacrosse"
+},
+{   "name": "Drake Forman",
+    "email":"IgotAlightVoice@gmail.com",
+    "password":"OppositeVoice"
+}
 
  ]
