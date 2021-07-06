@@ -1,11 +1,8 @@
 const router = require('express').Router(); 
-const { Post, User, Comment } = require('../../models');
-const sequelize = require("../../config/connection"); 
-const withAuth = require('../../utils/helpers');
-
+const { Post } = require('../../models');
 
 ///creates new post 
-router.post('/', async, (req, res) => { 
+router.post('/', async (req, res) => { 
     try { 
         if(req.session.logged_in) {
         const postData =  await Post.create({ 

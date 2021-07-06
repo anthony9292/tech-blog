@@ -13,7 +13,7 @@ Comment.init(
             autoIncrement: true,
 
         }, 
-        comment_reply: { 
+        comment_text: { 
             type: DataTypes.INTEGER,
             allowNull: false
 

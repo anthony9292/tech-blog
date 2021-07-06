@@ -1,7 +1,6 @@
 const router = require('express').Router();
-const { eq } = require('sequelize/types/lib/operators');
 const { User, Post, Comment} = require('../models');
-const { afterSync } = require('../models/user-m');
+
 
 
 router.get('/', async (req, res) => {
