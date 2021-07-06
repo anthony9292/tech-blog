@@ -3,7 +3,7 @@ require('dotenv').config()
 const path = require('path');
 const express = require('express');
 const session = require('express-session'); 
-const routes = require('./router');
+const routes = require('./controllers');
 const exphbs = require('express-handlebars');
 const helpers = require('./utils/helpers')
 //inputs custome helpers method
@@ -17,7 +17,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 //sessions with cookies 
- const sess = {
+ const sessions = {
  secret: process.env.SECRET,
  //calls for session to use cookies 
  cookie: {},
@@ -29,9 +29,8 @@ store: new SequelizeStore({
  })
  };
 
-app.use(session(sess)); 
+app.use(session(sessions)); 
 //sets handlebars as default template 
-const hbs = exphbs.create({helpers});
 app.engine('handlebars', hbs.engine); 
 app.set('view engine','handlebars'); 
 

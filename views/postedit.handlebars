@@ -1,0 +1,21 @@
+<div class="card">
+    <div class="card-body">
+        <form method ="POST">
+            <div class="group-form">
+                <label for="title-post" id="previous-title">{{posts:title}}</label>
+                <input type="text" class="form-control" id="edited-title" placeholder="Edit title">
+            </div>
+            <div class="group-form">
+                <label  for="post-text">Update</label>
+                <textarea type="text" class="form-control" id="text-update" rows="10">{{post.text}}</textarea>
+            </div>
+            by you on {{format_date.post.created_at}}
+            |
+            <div class="">
+                <button type="submit" class="btn btn-info" id="edit" value="{{posts.id}}">Update</button> 
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="/public/js/postedit.js"></script>

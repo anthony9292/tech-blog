@@ -1,4 +1,4 @@
-const registerForm = async (event) => { 
+const registrationForm = async (event) => { 
     event.preventDefault(); 
 
     const name = document.getElementId('name-register').value;

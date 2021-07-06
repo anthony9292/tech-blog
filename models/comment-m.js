@@ -1,56 +1,46 @@
-const { Sequalize, Model, Datatypes, INTEGER } = require("sequelize"); 
-const sequelize = require("../config/connection"); 
-
-class Comment extends Model{} 
+const { Model, DataTypes } = require('sequelize');
+const sequelize =  require('../config/connection'); 
 
 
-Comment.init({ 
+class Comment extends Model {}
 
-    id: { 
-        type: Datatypes.INTEGER,
-        allowMNull:false, 
-        primaryKey: true, 
-        autoIncrement: true,
-    },
+Comment.init(
+    {
+        id: { 
+            type: DataTypes.INTEGER, 
+            allowNull: false, 
+            primaryKey: true, 
+            autoIncrement: true,
 
-    body: { 
-        type: Datatypes.String, 
-        allowMNull: false 
+        }, 
+        comment_reply: { 
+            type: DataTypes.INTEGER,
+            allowNull: false
+
+        }, 
+        post_id: { 
+            type: DataTypes.INTEGER, 
+            references: { 
+                model: 'post', 
+                id: 'id'
+            }
+        },
+        user_id: { 
+            type: DataTypes.INTEGER, 
+            references: {
+                model: 'user', 
+                id: 'id'
+            }
+        }
     }, 
-
-    post_id: { 
-        type: Datatypes.INTEGER, 
-        references: { 
-            model: 'post', 
-            id: 'id', 
-        }
-    },
-
-    user_id: { 
-        type: Datatypes.INTEGER, 
-        references: { 
-            model: 'user', 
-            id: 'id', 
-        }
-    },
-
-    user_id: { 
-        type: Datatypes.INTEGER, 
-        references: { 
-        model: 'user',
-        id: 'id'
+    { 
+        sequelize, 
+        timestamps: true, 
+        freezeTableName: true, 
+        underscored: true, 
+        modelName: 'comment', 
     }
-}
-}, 
-  { 
-      sequelize, 
-      timestamps: true, 
-      freezeTableName: true, 
-      underscored: true, 
-      modelName: 'comment',
-  }
-
-);
+); 
 
 
-module.exports = Comment;
+module.exports =  Comment;

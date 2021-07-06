@@ -1,11 +1,12 @@
 const router =  require('express').Router(); 
+const userRR = require('./api/user-r'); 
+const postRR = require('./api/post-r');
+const commentRR = require('./api/comment-r');
+const { use } = require('./api/user-r');
 
-const { Model } = require('sequelize/types');
-const apiRR =  require('./api'); 
-const homeR = require('./homeR'); 
 
-router.use('/', homeR);
-router.use('/', apiRR); 
-
+router.use('/users', userRR); 
+router.use('/posts', postRR); 
+router.use('/comments', commentRR)
 
 module.exports = router;
