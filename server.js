@@ -47,7 +47,7 @@ app.use(express.urlencoded({
 app.use(routes); 
 
 sequelize.sync({ force: false }).then(() => { 
-  app.listen(PORT, () => console.log('App is listening on port'));
+  app.listen(PORT, () => console.log('App is listening on port 3001'));
  });
  
 

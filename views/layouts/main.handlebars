@@ -1,11 +1,11 @@
-header<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <!-- Head -->
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<meta name="Description" content="Give away your excess food! Instead of letting produce spoil in your kitchen, pay it forward and help out another person in your community."/>
+<meta name="Description" content="tech blog application."/>
 <!-- Start Style Sheets -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
@@ -13,7 +13,7 @@ header<!DOCTYPE html>
 <link rel="stylesheet" href="css/style.css">
 <!-- End Style Sheets -->
 <!-- Title -->
-<title>Anthony's tech blog</title>
+<title> Modern Tech blog</title>
 </head>
 <!-- Body -->
 <body>
@@ -22,16 +22,16 @@ header<!DOCTYPE html>
         <a href="/" id="title">Tech blog</a>">
     <!-- User Profile displays when a session is active -->
     {{#if logged_in}}
-    <div class="navi-bar">
+    <div class="navigation-bar">
         <button id="logout" class="btn nav btn-light">logout</button>
-        <a href ="/post" class="btn nav btn-success">Post</a>
-        <a href = "/profile" class="btn nav btn-warning">access your Post</a>
+        <a href ="/views/post.handlebars" class="btn nav btn-success">Post</a>
+        <a href = "/views/profile.handlebars" class="btn nav btn-warning">access your Post</a>
     </div>
      {{else}}
          <!-- Sign In / Register displays when a session is not active -->
       <div class="nav-bar">
-          <a href="/login" class="btn nav btn-light">login</a>
-          <a href="/register" class="btn nav btn-info">Register New Account</a>
+          <a href="/views/login.handlebars" class="btn nav btn-light">login</a>
+          <a href="/views/registration.handlebars" class="btn nav btn-info">Register New Account</a>
           </div>
           {{/if}}
           </header>

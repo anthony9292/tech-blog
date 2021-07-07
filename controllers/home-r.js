@@ -28,8 +28,8 @@ router.get('/', async (req, res) => {
             res.render('homepage', {posts}); 
 
         } 
-    }catch (err) { 
-            res.status.apply(500).json(err); 
+    } catch (err) { 
+            res.status(500).json(err); 
         }
 
     });

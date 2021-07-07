@@ -1,6 +1,6 @@
  {{#each posts as |post|}}
 <div class="card">
-    <div class="box-header">
+    <div class="card-header">
         <h3>{{post.title}}</h3>
         <h5>Date{{format_date post.updatedAt}}</h5>
     </div>
@@ -14,7 +14,7 @@
 </div>
 {{#each post.comments as |comment|}}
 <div class="card">
-    <div class="box-header">
+    <div class="card-header">
         <h5>
             {{comment.user.name}}
         </h5>
