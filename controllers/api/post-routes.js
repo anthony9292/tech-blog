@@ -1,29 +1,28 @@
 const router = require('express').Router(); 
-const { Post } = require('../../models');
+const { Post } = require('../../models'); 
 
 ///creates new post 
 router.post('/', async (req, res) => { 
-    try { 
-        if(req.session.logged_in) {
-        const postData =  await Post.create({ 
-        title: req.body.title,  
-        body: req.body.body, 
-        user_id: req.session.user_id, 
-    })
-     res.status(200).json(postData); 
-} 
-else { 
-    res.redirect('/login'); 
-}
-
-} catch (err) { 
-    res.status(400).json(err);
-}
+    try {
+        if(req.session.logged_in) { 
+            const postData = await Post.create({ 
+                title: req.body.title, 
+                text: req.body.text,
+                user_id: req.session.user_id
+            })
+            res.status(200).json(postData)
+        } 
+        else { 
+            res.redirect('/login');
+        }
+    }
+    catch (err) { 
+        res.status(400).json(err);
+    }
 });
 
-router.delete('/', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
-
         if( req.session.logged_in) { 
             const postData = await Post.destroy({
                 where:  { 
@@ -31,15 +30,17 @@ router.delete('/', async (req, res) => {
                 }
             })
            res.status(200).json(postData);
-        } else { 
+        } 
+        else { 
             res.redirect('login'); 
         }
-    } catch (err) {
+    } 
+    catch (err) {
         res.status(400).json(err);
     }
 });
 
-router.put('/id', async (req,res) => { 
+router.put('/:id', async (req,res) => { 
     try { 
         if(req.session.logged_in) { 
             const postData = await Post.update({
@@ -52,11 +53,13 @@ router.put('/id', async (req,res) => {
                 },
             })
             res.status(200).json(postData); 
-        } else { 
+        }
+         else { 
             res.redirect('login');
         }
 
-    }catch (err) {
+    }
+    catch (err) {
         res.status(400).json(err);
     }
 })
