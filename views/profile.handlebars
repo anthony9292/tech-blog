@@ -1,0 +1,28 @@
+{{#each post as |post|}}
+  <div class="card">
+      <div class="header-card"> 
+          <h2>{{post.title}}</h2>
+          <h5>Date: {{ format_date post.updatedAt}}</h5>
+  </div>
+  <div class="card-body">
+      <p>{{post.text}}</p>
+      <div>
+          <button value="{{post.id}}" class="btn btn delete button">Delete post</button>
+          <a href="/update/{{post.id}}" class="btn btn  update button">Update post</a>
+      </div>
+  </div>
+  </div>
+  {{#each post.comment as |comment|}}
+   <div class="card"> 
+       <div class="header-card">
+           <h5>{{comment.user.name}}</h5>
+           <h5>Date: {{formate_date post.updatedAt}}</h5>
+       </div>
+       <div class="card-body">
+           <p>{{comment.comment_text}}</p>
+       </div>
+   </div>
+   {{/each}}
+   {{/each}}
+
+   <script src="/public/js/delete.js"></script>

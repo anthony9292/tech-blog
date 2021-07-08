@@ -19,7 +19,7 @@ router.post('/login', async (req, res) => {
         if(!userData) {
             res.status(400).json({ message:'The account name you entered is invalid,Please check your information and try again.'})
             return; 
-        }
+        };
         //check if right password 
         const validPassword = user.checkPassword(req.body.password); 
 
@@ -29,10 +29,12 @@ router.post('/login', async (req, res) => {
         };
             req.session.user_id = userData.id;
             req.session.logged_in = true; 
-            res.json({ user: user, message:'Successfully Logged in!'});
+            res.json({ user: userData, message:'Successfully Logged in!'});
         
 
-    }catch (err) { res.status(400).json(err)
+    }
+    catch (err)
+     { res.status(400).json(err)
 }
 
 });
@@ -42,7 +44,7 @@ router.post('/login', async (req, res) => {
 router.post('/logout', async (req, res) => { 
 
 try { 
-    if (req.secure.logged_in) { 
+    if (req.session.logged_in) { 
         req.session.destroy(() => { 
             res.status(204).end(); 
         }); 

@@ -1,0 +1,26 @@
+<div class="card">
+    <div class="header-card"> 
+        <h2>{{post.title}}</h2>
+        <h5>Date: {{format_date posts.updateAt}}</h5>
+</div>
+<div class="card-body">
+    <p>{{posts.text}}</p> 
+    <textarea id="comment"></textarea>
+    <button value={{post.id}} class="bt btn-light" id="submit">comment</button> 
+</div>
+</div> 
+
+
+<div class="card"> 
+    {{#each posts.comment as |comment|}}
+      <div class="header-card"> 
+          <h5>{{comment.user.name}}</h5>
+          <h5>Date: {{formate_date comment.updateAt}}</h5>
+      </div>
+           <div class="card-body">
+               <p>{{comment.comment_text}}</p>
+           </div>
+           {{/each}}
+</div>
+
+<script src="/public/js/subcomment.js"></script>

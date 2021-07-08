@@ -26,7 +26,8 @@ router.get('/', async (req, res) => {
       const posts = postData.map((post) => post.get({ plain: true }));
       res.render('homepage', {posts});
     }
-  } catch (err) {
+  } 
+  catch (err) {
     res.status(500).json(err);
   }
 });
@@ -35,10 +36,12 @@ router.get('/login', async (req, res) => {
   try{ 
     if (!req.session.logged_in) {
       res.render('login');
-    } else if (req.session.logged_in) {
+    } 
+    else if (req.session.logged_in) {
       res.render('homepage', { logged_in:req.session.logged_in })
     }
-  } catch (err) {
+  } 
+  catch (err) {
     res.status(500).json(err);
   }
 });
@@ -46,7 +49,8 @@ router.get('/login', async (req, res) => {
 router.get('/register', (req, res) => {
   try {
     res.render('register');
-  } catch (err) {
+  } 
+  catch (err) {
     res.status(500).json(err);
   }
 });
@@ -55,10 +59,12 @@ router.get('/post', async (req, res) => {
   try {
     if (req.session.logged_in) {
       res.render('post',  { logged_in:req.session.logged_in })
-    } else {
+    } 
+    else {
       res.render('login');
     }
-  } catch (err) {
+  } 
+  catch (err) {
     res.status(500).json(err);
   }
 });
@@ -111,26 +117,29 @@ router.get('/profile', async (req, res) => {
       const posts = postData.map((post) => post.get({ plain: true }));
       // res.json(posts)
       res.render('profile', { posts, logged_in: req.session.logged_in });
-    } else {
+    } 
+    else {
       res.render('login');
     }
 
-  } catch (err) {
+  } 
+  catch (err) {
     res.status(500).json(err);
   }
 });
 
 router.get('/update/:id', async (req, res) => {
   try {
-
     if (req.session.logged_in) {
       const postData = await Post.findByPk(req.params.id)
       const posts = postData.get({ plain: true});
       res.render('update', { posts, logged_in: req.session.logged_in })
-    } else {
+    } 
+    else {
       res.render('login');
     }
-  } catch (err) {
+  } 
+  catch (err) {
     res.status(500).json(err);
   }
 })

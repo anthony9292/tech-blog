@@ -13,7 +13,27 @@
 </head>
 <body>
     <header>
-        <a href="" id="title"><h1>Tech blog</h1></a>
+        <a href="/" id="title"><h1>Tech blog</h1></a>
         {{#if logged_in}}
+         <div class="navi-bar">
+             <button id="logout" class= "bnt bnt-dark">Logout</button>
+             <a href="/post" class="bnt btn-primary">post</a>
+             <a href="/profile" class="btn btn-secondary">View profile</a>
+         </div>
+         {{else}}
+         <div class="navi-bar">
+             <a href="/login" class="btn btn-light">login</a>
+             <a href="/register" class="bnt btn-dark">register Account</a>
+         </div>
+         {{/if}}
     </header>
+
+    <main>
+        {{body}}
+    </main>
+
+    {{#if logged_in}}
+    <script src="/public/js/logout.js"></script>
+    {{/if}}
 </body>
+</html>

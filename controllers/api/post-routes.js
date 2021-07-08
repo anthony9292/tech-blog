@@ -32,7 +32,7 @@ router.delete('/:id', async (req, res) => {
            res.status(200).json(postData);
         } 
         else { 
-            res.redirect('login'); 
+            res.redirect('/login'); 
         }
     } 
     catch (err) {
@@ -55,7 +55,7 @@ router.put('/:id', async (req,res) => {
             res.status(200).json(postData); 
         }
          else { 
-            res.redirect('login');
+            res.redirect('/login');
         }
 
     }
