@@ -9,7 +9,7 @@ const updatePost =  async (event) => {
     const text = document.getElementById('update-text').value;
 
     if(title) { 
-        const response = await  fetch(`/api/posts/${id}`, { 
+        const response = await  fetch(`/api/post/${id}`, { 
             method: 'PUT', 
             body: JSON.stringify({ title, text }), 
             headers: { 'Content-Type': 'application/json'}, 
@@ -20,7 +20,7 @@ const updatePost =  async (event) => {
     } 
     else if(!title) {  
         const previousTitle = document.getElementById('previous-title').value
-        const response =  await fetch(`/api/posts/${id}`, { 
+        const response =  await fetch(`/api/post/${id}`, { 
             method: 'PUT', 
             body: JSON.stringify({ previousTitle, text }), 
             headers: { 'Content-Type': 'application/json' },

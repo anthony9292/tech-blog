@@ -18,13 +18,17 @@
         {{#if logged_in}}
          <div class="navigation">
              <button id="logout" class="btn nav bnt">Logout</button>
-             <a href="/post" class="bnt nav btn-primary">post</a>
+             <a href="/post" class="bnt nav btn-primary" >post</a>
              <a href="/profile" class="btn nav btn-secondary">View profile</a>
          </div>
          {{else}}
          <div class="navigation">
-             <a href="/login" class="btn btn-light">login</a>
-             <a href="/register" class="bnt btn">register</a>
+             <div class="flex-item">
+             <a href="/login" class="btn btn-dark">login</a>
+             </div>
+             <div class="flex-item">
+             <a href="/register" class="btn btn-dark">register</a>
+              </div>  
          </div>
          {{/if}}
     </header>
@@ -35,12 +39,13 @@
 
     {{#if logged_in}}
 
-    <script src="/public/js/logout.js"></script>
+    <script src="/js/logout.js"></script>
 
     {{/if}}
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <scrip src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></scrip>
-    <scrip src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></scrip>
+  
+
 
 
 </body>

@@ -5,7 +5,7 @@ const subComment = async (event) => {
     console.log(comment) 
     console.log(typeof postId)
     if(comment && postId) { 
-        const response = await fetch('api/comments', { 
+        const response = await fetch('/api/comments', { 
             method: 'POST', 
             body: JSON.stringify( { comment, postId}), 
             headers: {'Content-Type': 'application/json'}

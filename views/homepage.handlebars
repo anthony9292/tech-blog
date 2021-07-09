@@ -1,15 +1,15 @@
 {{#each posts as |post|}}
 
 <div class="card">
-    <div class="card-header">
+    <div class="header-card">
         <h2>{{post.title}}</h2>
         <h5>Date:{{formate_date post.updatedAt}}</h5>
     </div>
     <div class="card-body">
         <p>{{post.text}}</p>
-        <button value="{{post.id}}" class="btn btn comment button">Comment</button>
+        <button value="{{post.id}}" class="btn btn-primary comment button">Comment</button>
     </div>
 </div>
 {{/each}}
 
-<script src="/public/js/comment.js"></script>
+<script src="/js/comment.js"></script>

@@ -63,7 +63,7 @@ main {
 }
 
 .header-card { 
-    background-color: white;
+    background-color: var(--orange);
     color: var(--blue);
     text-align: left;
     padding-left: 5%;
@@ -80,6 +80,13 @@ main {
      font-size: 1.0rem;
 }
 
+
+.flex-item {
+    display: block;
+    align-self: center;
+    font-size: large;
+    padding: 20px;
+}
 
 .form-group { 
     margin: 5%; 
@@ -104,9 +111,11 @@ label {
     height:50%; 
 }
 
-.comment-section { 
-
-
+.comment { 
+ display: flex;
+ flex-grow: column;
+ justify-content: center;
+ align-items: center;
 }
 
 

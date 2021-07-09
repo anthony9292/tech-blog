@@ -13,7 +13,7 @@ const seedDatabase = async () => {
      console.log('\n----- User SEEDED ------\n');
 
     await Post.bulkCreate(postData);
-     console.log('\n----- POSTS SEEDED -----\n') ;
+     console.log('\n----- Post SEEDED -----\n') ;
 
     await Comment.bulkCreate(commentData); 
      console.log('\n----- Comments SEEDED ----\n');

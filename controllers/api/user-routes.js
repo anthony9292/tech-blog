@@ -15,7 +15,7 @@ router.post('/register', async (req, res) => {
 ///log in user 
 router.post('/login', async (req, res) => { 
     try {  
-        const userData = await User.findOne ({ where: {email: req.body.email} }) 
+        const userData = await User.findOne({ where: { email: req.body.email } }) 
         if(!userData) {
             res.status(400).json({ message:'The account name you entered is invalid,Please check your information and try again.'})
             return; 
