@@ -6,7 +6,7 @@ const registrationForm = async (event) => {
     const password = document.getElementById('register-password').value;
 
     if ( name && email && password) { 
-        const response =  await fetch('api/users/register', {
+        const response = await fetch('api/users/register', {
             method: 'POST',
             body: JSON.stringify({ name, email, password }), 
             headers: { 'Content-Type': 'application/json'}, 
@@ -15,8 +15,7 @@ const registrationForm = async (event) => {
         if (response.ok) { 
             document.location.replace('/'); 
 
-        }
-        else { 
+        }else { 
             alert('registration has failed,please try again');
         }
     }

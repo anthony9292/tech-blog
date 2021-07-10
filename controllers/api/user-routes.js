@@ -1,43 +1,43 @@
 const router = require('express').Router(); 
-const { User } =  require('../../models'); 
+const { User } = require('../../models'); 
 
 router.post('/register', async (req, res) => { 
-   try { 
-       const registerData = await User.create(req.body);
-            req.session.user_id = registerData.id;
-            req.session.logged_in = true;
-              res.status(200).json(registerData);
-        } catch (err) { 
-            res.status(400).json(err); 
-        }
-        })
+  try {
+      const registerData = await User.create(req.body); 
+      req.session.user_id = registerData.id;
+      req.session.logged_in = true;
+      res.status(200).json(registerData); 
+  }
+  catch(err) { 
+      res.status(400).json(err);
+  }
+})
 
 ///log in user 
-router.post('/login', async (req, res) => { 
-    try {  
-        const userData = await User.findOne({ where: { email: req.body.email } }) 
-        if(!userData) {
-            res.status(400).json({ message:'The account name you entered is invalid,Please check your information and try again.'})
-            return; 
-        };
-        //check if right password 
-        const validPassword = user.checkPassword(req.body.password); 
+ router.post('/login', async (req, res) => { 
+      try { 
+          const userData = await User.findOne({ where: {email: req.body.email} });
 
-        if(!validPassword) { 
-            res.status(400).json({message:'The account password you entered is invalid, Please check your information and try again.'});
-            return; 
-        };
-            req.session.user_id = userData.id;
-            req.session.logged_in = true; 
-            res.json({ user: userData, message:'Successfully Logged in!'});
-        
+          if(!userData) { 
+              res.status(400).json({ message: 'Incorrect information, please try again with correct email & password'});
+              return;
+          };
 
-    }
-    catch (err)
-     { res.status(400).json(err)
-}
+          const validPassword = userData.checkPassword(req.body.password);
 
-});
+          if (!validPassword) { 
+              res.status(400).json({ message:'Incorrect information, please try again with correct password & email!'});
+              return;
+
+          }; 
+          req.session.user_id =  userData.id;
+          req.session.logged_in = true;
+          res.json({ user: userData, message:'Successfully logged in'});
+      }
+      catch (err) { 
+          res.status(400).json(err);
+      }
+ });
 
 
 //log out user 

@@ -3,21 +3,21 @@ const loginForm =  async (event) => {
 
     const email = document.getElementById('login-email').value.trim(); 
     const password = document.getElementById('login-password').value.trim(); 
+  
 
-   if ( email && password) { 
-       const response = await fetch('/api/users/login',  { 
-           method: 'POST', 
-           body: JSON.stringify({ email, password }), 
-           headers: { 'Content-Type': 'application/json' },
-       });
-
-        if (response.ok) { 
-            document.location.replace('/'); 
+    if (email && password) {
+        const response = await fetch('/api/users/login', {
+          method: 'POST',
+          body: JSON.stringify({ email, password }),
+          headers: { 'Content-Type': 'application/json' },
+        });
+    
+        if (response.ok) {
+          document.location.replace('/');
+        } else {
+          alert('Failed to log in');
         }
-        else { 
-            alert('incorrect information'); 
-        }
-   }
-}; 
-
-document.getElementById('login').addEventListener('click', loginForm)
+      }
+    };
+    
+  document.getElementById('login').addEventListener('click', loginForm)

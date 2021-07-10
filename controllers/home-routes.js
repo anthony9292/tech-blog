@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
       });
       const posts = postData.map((post) => post.get({ plain: true }));
       // res.json(posts)
-      res.render('homepage', { posts, logged_in: req.session.logged_in });
+      res.render('home', { posts, logged_in: req.session.logged_in });
     } else {
       const postData = await Post.findAll({
         include: {
@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
         order:[['updatedAt',  'DESC']]
       });
       const posts = postData.map((post) => post.get({ plain: true }));
-      res.render('homepage', {posts});
+      res.render('home', {posts});
     }
   } 
   catch (err) {
@@ -38,7 +38,7 @@ router.get('/login', async (req, res) => {
       res.render('login');
     } 
     else if (req.session.logged_in) {
-      res.render('homepage', { logged_in:req.session.logged_in })
+      res.render('home', { logged_in:req.session.logged_in })
     }
   } 
   catch (err) {
