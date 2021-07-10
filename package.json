@@ -2,7 +2,9 @@
   "name": "tech-blog",
   "version": "1.0.0",
   "engines": {
-    "npm": "7.x"
+    "npm": "7.x",
+    "node": "16.x"
+
   },
   "description": "project 13 mvn",
   "main": "nodemon server.js",
