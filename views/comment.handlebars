@@ -1,21 +1,21 @@
 <div class="card">
     <div class="header-card"> 
-        <h2>{{post.title}}</h2>
-        <h5>Date: {{format_date posts.updateAt}}</h5>
+        <h2>{{posts.title}}</h2>
+        <h5 class="date">Date: {{format_date posts.updatedAt}}</h5>
 </div>
 <div class="card-body">
     <p>{{posts.text}}</p> 
     <textarea id="comment" rows="5" cols="50"></textarea>
-    <button value={{post.id}} class="bt btn-primary" id="submit">comment</button> 
+    <button value={{posts.id}} class="btn btn-primary btn-lg" id="submit">comment</button> 
 </div>
 </div> 
 
 
 <div class="card"> 
-    {{#each posts.comment as |comment|}}
+    {{#each posts.comments as |comment|}}
       <div class="header-card"> 
           <h5>{{comment.user.name}}</h5>
-          <h5>Date: {{formate_date comment.updateAt}}</h5>
+          <h5 class="date">Date: {{format_date  comment.updatedAt}}</h5>
       </div>
            <div class="card-body">
                <p>{{comment.comment_text}}</p>
@@ -23,4 +23,4 @@
            {{/each}}
 </div>
 
-<script src="/public/js/subcomment.js"></script>
+<script src="/js/subcomment.js"></script>

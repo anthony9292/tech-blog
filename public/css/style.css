@@ -14,14 +14,15 @@
    
    #title { 
        text-decoration:  none;
-       color: black;
+       color: inherit;
+       color: rgb(40, 138, 138);
        color:var(--blue);
        font-family: 'Times New Roman', Times, serif;
        font-size: 6rem;
    }
    
    header { 
-       background-color: var(--black);
+       background-color: var(--white);
        display: flex;
        flex-wrap: wrap;
        justify-content: space-around;
@@ -54,19 +55,19 @@
    
    .card {
    
-       width: 24%;
-       margin-bottom:5%;
+       width: 50%;
+       margin-bottom:1%;
        background-color: var(--white);
-       border: 5px solid var(--blue); 
-       border-radius: 15px;
+       border: 2px solid var(--blue); 
+       border-radius: 4px;
        text-align:center; 
    }
    
    .header-card { 
        background-color: var(--orange);
-       color: var(--blue);
+       color: var(--black);
        text-align: left;
-       padding-left: 5%;
+       padding-left: 39%;
        font-family: 'Times New Roman', Times, serif;
    }
    
@@ -80,7 +81,12 @@
         font-size: 1.0rem;
    }
    
-   
+   .date { 
+       padding-left: 84%;
+       padding-top: -5%;
+   }
+
+
    .flex-item {
        display: block;
        align-self: center;
@@ -125,12 +131,18 @@
    }
    
    .btn {
-       position: relative;
-       top: 1rem; 
-       font-size: 1rem;
-       font-family: 'Times New Roman', Times, serif;
+       color: var(--white);
+       background-color: var(--blue);
    }
    
+   .comment-section { 
+      
+      display: flex; 
+      flex-flow: column;
+      justify-content: center;
+      align-items: center;
+
+   }
    
    p { 
        text-align: left;
