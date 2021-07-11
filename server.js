@@ -10,12 +10,15 @@ const hbs = exphbs.create({ helpers });
 
 
 const sequelize = require('./config/connection'); 
+const { Server } = require('http');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
  //express app
  const app = express(); 
- const PORT = process.env.PORT || 3001;
-
+ var port = process.env.PORT || 3000;
+app.listen(port, "0.0.0.0", function() {
+console.log("Listening on Port 3000");
+});
  const sess = { 
    secret: process.env.SECRET,
    cookies: {},
@@ -43,11 +46,6 @@ app.use(express.static(path.join(__dirname +'/public')));
 //routes
 app.use(routes); 
 
-sequelize.sync({ force: false }).then(() => { 
- app.listen(PORT, () => console.log('now listening'))
-})
-
- 
 
 
 

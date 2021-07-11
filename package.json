@@ -9,7 +9,8 @@
   "main": "nodemon server.js",
   "scripts": {
     "test": "node test",
-    "start": "npm start",
+    "postinstall": "npm run build",
+    "start": "node server.js",
     "watch": "nodemon server.js",
     "seed": "node seeds/seed.js"
   },
