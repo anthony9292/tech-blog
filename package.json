@@ -1,17 +1,11 @@
 {
   "name": "tech-blog",
   "version": "1.0.0",
-  "engines": {
-    "npm": "7.x",
-    "node": "16.x"
-  },
   "description": "project 13 mvn",
   "main": "server.js",
   "scripts": {
-    "test": "node test",
-    "start": "node server.js",
-    "watch": "nodemon server.js",
-    "seed": "npm run seed"
+    "test": "",
+    "watch": "nodemon server.js"
   },
   "repository": {
     "type": "git",
