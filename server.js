@@ -19,20 +19,21 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
  const app = express(); 
 
  app.set("port", PORT)
-//sessions with cookies 
-//const sess = {
- // secret: process.env.SECRET,
-  //calls for session to use cookies 
- // cookie: {},
- // resave: false,
-// saveUninitialized: false,
-// store: new SequelizeStore({
- //  db: sequelize
- //   })
-//  };
 
+ const sess = { 
+   secret: process.env.SECRET,
+   cookies: {},
+   resave: false, 
+   saveUninitialized: false,
+   store: new SequelizeStore({
+     db: sequelize
+   })
+ };
  
   app.use(session(sess));
+
+
+  app.post
   
 
 //sets handlebars as default template 
