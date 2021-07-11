@@ -6,7 +6,7 @@
     "node": "16.x"
   },
   "description": "project 13 mvn",
-  "main": "nodemon server.js",
+  "main": "server.js",
   "scripts": {
     "test": "node test",
     "postinstall": "npm run build",
