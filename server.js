@@ -16,9 +16,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
  //express app
  const app = express(); 
  const port = process.env.PORT || 3000;
-app.listen(port, "0.0.0.0", function() {
-console.log("Listening on Port 3000");
-});
+
  const sess = { 
    secret: process.env.SECRET,
    cookies: {},
@@ -31,10 +29,6 @@ console.log("Listening on Port 3000");
  
   app.use(session(sess));
 
-
-  app.post
-  
-
 //sets handlebars as default template 
 app.engine('handlebars', hbs.engine); 
 app.set('view engine', 'handlebars'); 
@@ -45,6 +39,11 @@ app.use(express.static(path.join(__dirname +'/public')));
 
 //routes
 app.use(routes); 
+
+{
+sequelize.sync({ force: false }).then(() => { 
+  app.listen(PORT, () => console.log('Listening on PORT'));
+});
 
 
 
