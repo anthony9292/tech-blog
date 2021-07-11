@@ -9,10 +9,9 @@
   "main": "server.js",
   "scripts": {
     "test": "node test",
-    "postinstall": "npm run build",
     "start": "node server.js",
     "watch": "nodemon server.js",
-    "seed": "node seeds/seed.js"
+    "seed": "npm run seed"
   },
   "repository": {
     "type": "git",
