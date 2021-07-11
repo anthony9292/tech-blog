@@ -13,20 +13,23 @@ const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
  //express app
- const app = express(); 
+ 
  const PORT = process.env.PORT || 3000;
 
+ const app = express(); 
+
+ app.set("port", PORT)
 //sessions with cookies 
-const sess = {
-  secret: process.env.SECRET,
+//const sess = {
+ // secret: process.env.SECRET,
   //calls for session to use cookies 
-  cookie: {},
-  resave: false,
- saveUninitialized: false,
- store: new SequelizeStore({
-   db: sequelize
-    })
-  };
+ // cookie: {},
+ // resave: false,
+// saveUninitialized: false,
+// store: new SequelizeStore({
+ //  db: sequelize
+ //   })
+//  };
 
  
   app.use(session(sess));
