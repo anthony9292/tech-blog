@@ -1,5 +1,3 @@
-const e = require("express");
-
 const updatePost =  async (event) => { 
     event.preventDefault(); 
     const id = event.target.value
@@ -17,7 +15,7 @@ const updatePost =  async (event) => {
             document.location.replace('/profile')
         }
     } 
-    else if(!title) {  
+    else if (!title) {  
         const previousTitle = document.getElementById('previous-title').value
         const response =  await fetch(`/api/posts/${id}`, { 
             method: 'PUT', 
