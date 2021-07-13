@@ -2,7 +2,7 @@
 MIT<br>[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Description
-  Blog site where users can write,post,comment about 
+  Blog site where users can write,post,comment about anything. 
   
   ## Table of contents
   - [Description](#description)
