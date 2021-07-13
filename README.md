@@ -27,7 +27,7 @@ e-commerce Pic:
 
 ## heroku 
 
- -https://dashboard.heroku.com/apps/techblog-ndegwa
+https://techblog-ndegwa.herokuapp.com/
 
 # Technologies 
 - 
