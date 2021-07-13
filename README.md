@@ -2,14 +2,14 @@
 MIT<br>[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Description
-
+  Blog site where users can write,post,comment about 
   
   ## Table of contents
   - [Description](#description)
   - [Table of contents](#table-of-contents)
   - [Installation](#installation)
   - [Images](#image)
-  - [Youtube](#youtube)
+  - [heroku](#youtube)
   - [Technologies](#technologies)
   - [License](#license)
   - [Contributing](#contributing)
@@ -20,14 +20,14 @@ MIT<br>[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](ht
 
 ## Images 
  tech-blog host-s: 
-
 ![Sample of tech-blog app running]()
 
 e-commerce Pic: 
+![Sample of tech-blog app](techblogpick.PNG)
 
-![Sample of e-commerce app]()
+## heroku 
 
-## Youtube 
+ -https://dashboard.heroku.com/apps/techblog-ndegwa
 
 # Technologies 
 - 
